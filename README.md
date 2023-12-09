@@ -2,7 +2,7 @@
 
 Выполнил Олешко В.Ю., 4гр
 
-https://dranikpg.com/planes
+https://dranikpg.com:8000
 
 ### Детали реализации
 
