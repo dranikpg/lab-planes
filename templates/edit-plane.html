@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airplane Form</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <style>
+        body {
+            background-color: #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="window" style="margin: auto; width: 400px;">
+        <div class="title-bar">
+            <div class="title-bar-text"><b>Edit Airplane</b></div>
+            <div class="title-bar-controls">
+                <a href="/planes"><button aria-label="Close"></button></a>
+            </div>
+        </div>
+        <form action="/edit-plane" method="post"> <!-- Change the action as per your endpoint -->
+            {% if plane.id is not none %}
+            <div class="field-row-stacked" style="visibility: hidden;">
+                <label for="id">Id:</label>
+                <input type="number" id="id" name="id" required 
+                    value="{{plane.id}}">
+            </div>
+            {% endif %}
+            <div class="field-row-stacked">
+                <label for="call_sign">Call Sign:</label>
+                <input type="text" id="call_sign" name="call_sign" required 
+                    value="{{plane.call_sign}}">
+            </div>
+            <div class="field-row-stacked">
+                <label for="model">Model:</label>
+                <input type="text" id="model" name="model" required 
+                    value="{{plane.model}}">
+            </div>
+            <div class="field-row-stacked">
+                <label for="capacity">Capacity:</label>
+                <input type="number" id="capacity" name="capacity" required 
+                    value="{{plane.capacity}}">
+            </div>
+            <div class="field-row-stacked">
+                <label for="year_of_manufacture">Year of Manufacture:</label>
+                <input type="text" id="year_of_manufacture" name="year_of_manufacture" required 
+                    value="{{plane.year_of_manufacture}}">
+            </div>
+            
+            <div class="field-row-stacked">
+                <label for="airline_id">Airline ID:</label>
+                <select id="airline_id" name="airline_id" required value="{{plane.airline_id or 1}}">
+                    {% for airline in airlines %}
+                    <option value="{{airline.id}}">{{airline.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <hr/>
+            <div style="display: flex; justify-content: space-around;">     
+                <input type="submit" name="action" value="Update" />
+                {% if plane.id is not none %}
+                <input type="submit" name="action" value="Delete" />
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</body>
+</html>

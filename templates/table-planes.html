@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airplanes</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <style>
+        body {
+            background-color: #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="window" style="width: 400px; margin: auto;">
+        <div class="title-bar">
+            <div class="title-bar-text"><b>Airlines</b></div>
+            <div class="title-bar-controls">
+                <a href="/"><button aria-label="Close"></button></a>
+            </div>
+        </div>
+        <div class="sunken-panel" style="height: 600px; width: 400px;">
+            <table style="width: 380px;">
+                <thead>
+                    <tr>
+                        <th><a href="/planes?sort=call_sign">Call Sign</a></th>
+                        <th><a href="/planes?sort=model">Model</a></th>
+                        <th><a href="/planes?sort=capacity">Capacity</a></th>
+                        <th>Airline</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for plane in planes %}
+                    <tr>
+                        <td>{{ plane.call_sign }}</td>
+                        <td>{{ plane.model }}</td>
+                        <td>{{ plane.capacity }}</td>
+                        <td>{{ plane.airline_name }}</td>
+                        <td><a href="/edit-plane?id={{plane.id}}"><button>Edit</button></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="status-bar">
+            <p class="status-bar-field"><b>{{planes | length}} Planes</b></p>
+            <p class="status-bar-field"><a href="/edit-plane"><button>Create</button></a></p>
+          </div>
+    </div>
+</body>
+</html>

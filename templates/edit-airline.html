@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airline Form</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <style>
+        body {
+            background-color: #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="window" style="margin: auto; width: 400px;">
+        <div class="title-bar">
+            <div class="title-bar-text"><b>Edit Airline</b></div>
+            <div class="title-bar-controls">
+                <a href="/airlines"><button aria-label="Close"></button></a>
+            </div>
+        </div>
+        <form action="/edit-airline" method="post"> <!-- Change the action as per your endpoint -->
+            {% if airline.id is not none %}
+            <div style="display: none; visibility: hidden; max-height: 0px;">
+                <label for="id">Id:</label>
+                <input type="number" id="id" name="id" required 
+                    value="{{airline.id}}">
+            </div>
+            {% endif %}
+            <div class="field-row-stacked">
+                <label for="call_sign">Name</label>
+                <input type="text" id="name" name="name" required 
+                    value="{{airline.name}}">
+            </div>
+            <div class="field-row-stacked">
+                <label for="model">Country:</label>
+                <select type="text" id="country" name="country" required 
+                    value="{{airline.country}}">
+                    <option value="US">United States</option>
+                    <option value="USSR">Soviet Union</option>
+                    <option value="FR">France</option>
+                    <option value="UK">United Kingdom</option>
+                </select>
+            </div>
+            <hr/>
+            <div style="display: flex; justify-content: space-around;">     
+                <input type="submit" name="action" value="Update" />
+                {% if airline.id is not none %}
+                <input type="submit" name="action" value="Delete" />
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</body>
+</html>

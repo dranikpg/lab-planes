@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airlines</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <style>
+        body {
+            background-color: #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="window" style="width: 400px; margin: auto;">
+        <div class="title-bar">
+            <div class="title-bar-text"><b>Airlines</b></div>
+            <div class="title-bar-controls">
+                <a href="/"><button aria-label="Close"></button></a>
+            </div>
+        </div>
+        <div class="sunken-panel" style="height: 600px; width: 400px;">
+            <table style="width: 380px;">
+                <thead>
+                    <tr>
+                        <th><a href="/airlines?sort=name">Name</a></th>
+                        <th><a href="/airlines?sort=foundation_date">Foundation Date</a></th>
+                        <th><a href="/airlines?sort=country">Country</a></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for airline in airlines %}
+                    <tr>
+                        <td>{{ airline.name }}</td>
+                        <td>{{ airline.foundation_date }}</td>
+                        <td>{{ airline.country }}</td>
+                        <td><a href="/edit-airline?id={{airline.id}}"><button>Edit</button></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
