@@ -146,7 +146,7 @@ async def edit_airline_get(request: Request, id: int = None):
     return templates.TemplateResponse('edit-airline.html', {"request": request, "airline": airline})
 
 @app.post("/edit-airline")
-async def update_airline(id: int = Form(None), name:str = Form(), country:str = Form(), foundation_date:str = Form("2022")):
+async def update_airline(id: int = Form(None), name:str = Form(), country:str = Form(), foundation_date:str = Form()):
     async with aiosqlite.connect("database.db") as db:
         if id is not None:
             await db.execute("UPDATE airlines SET name = ?, foundation_date = ?, country = ? WHERE id = ?", (name, foundation_date, country, id))
